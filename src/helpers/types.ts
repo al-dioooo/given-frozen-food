@@ -16,3 +16,12 @@ export type ProductDataType = {
     name: string
   }[]
 }
+
+
+export type TestimonialDataType = {
+  id: number
+  name: string
+  message: string
+  created_at: string
+  updated_at?: string
+}

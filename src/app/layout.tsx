@@ -19,7 +19,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <title>Given Frozen Food</title>
       </head>
-      {/* <body className={`${poppinsSans.className} antialiased dark:bg-gray-900 dark:text-white`}> */}
+      {/* <body className={`${poppinsSans.className} antialiased dark:bg-neutral-900 dark:text-white`}> */}
       <body className={`${poppinsSans.className} antialiased`}>
         <MainLayout>
           {children}

@@ -10,7 +10,7 @@ import { FourPointedStar } from "@/components/icons/filled"
 import { ArrowNarrowDown, ArrowNarrowRight } from "@/components/icons/outline"
 import RaySpinner from "@/components/ray-spinner"
 import StarSpinner from "@/components/star-spinner"
-import { ProductDataType } from "@/helpers/types"
+import { ProductDataType, TestimonialDataType } from "@/helpers/types"
 import { useRef, useState } from "react"
 
 const productAnimationVariants = {
@@ -57,12 +57,34 @@ const productDataListMock: ProductDataType[] = [
   }
 ]
 
+const testimonialDataListMock: TestimonialDataType[] = [
+  {
+    id: 1,
+    name: "Alice Evergarden",
+    message: "Given Frozen Food menyediakan produk berkualitas tinggi yang sangat praktis dan lezat. Saya sangat puas dengan layanan mereka!",
+    created_at: "2024-01-15"
+  },
+  {
+    id: 2,
+    name: "Bob Stone",
+    message: "Produk dari Given Frozen Food selalu segar dan enak. Pengiriman cepat dan pelayanan ramah membuat saya terus kembali berbelanja di sini.",
+    created_at: "2024-02-10"
+  },
+  {
+    id: 3,
+    name: "Catherine Lake",
+    message: "Saya suka variasi produk yang ditawarkan oleh Given Frozen Food. Setiap kali saya mencoba sesuatu yang baru, rasanya selalu memuaskan!",
+    created_at: "2024-03-05"
+  }
+]
+
 export default function Home() {
   // Scroll container refs
   const ourProductContainerRef = useRef(null)
 
   // States
   const [productDataList, setProductDataList] = useState(productDataListMock)
+  const [testimonialDataList, setTestimonialDataList] = useState(testimonialDataListMock)
 
   return (
     <>
@@ -78,7 +100,7 @@ export default function Home() {
                 <span className="text-red-500 underline underline-offset-8 decoration-red-200">All You Need</span>
               </p>
             </h1>
-            <h2 className="md:text-lg text-gray-500 mt-4 max-w-md relative z-1">
+            <h2 className="md:text-lg text-neutral-500 mt-4 max-w-md relative z-1">
               Hidangan yang tidak hanya lezat tetapi juga bergizi dan praktis.
             </h2>
 
@@ -107,7 +129,7 @@ export default function Home() {
         <div className="relative">
           {/* Decoration */}
           <div className="absolute inset-x-0 pointer-events-none flex justify-center">
-            <div className="rounded-full border border-gray-200 p-2">
+            <div className="rounded-full border border-neutral-200 p-2">
               <ArrowNarrowDown className="w-12 h-12 text-red-500" />
             </div>
           </div>
@@ -139,7 +161,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={ourProductContainerRef} className="flex flex-col items-center p-8 md:p-16 space-y-16 rounded-b-[4rem] border-b-12 border-b-orange-100 bg-white">
+      <section ref={ourProductContainerRef} className="flex flex-col items-center p-8 md:p-16 space-y-16 bg-white">
         <h5 className="text-4xl text-red-500 font-semibold">Best Seller</h5>
 
         <div className="space-y-4">
@@ -148,7 +170,7 @@ export default function Home() {
             <div>
               <MotionLink href="/product" className="text-red-500 font-medium inline-flex space-x-2 items-center">
                 <span>Lihat Semua Produk</span>
-                <div className="rounded-full border border-gray-200 p-1">
+                <div className="rounded-full border border-neutral-200 p-1">
                   <ArrowNarrowRight className="w-6 h-6 text-red-500" />
                 </div>
               </MotionLink>
@@ -160,18 +182,48 @@ export default function Home() {
               //   <motion.img variants={productAnimationVariants} whileHover="hover" whileTap="tap" transition={{ type: "spring", visualDuration: .3 }} className="w-full aspect-video rounded-3xl" src={`${process.env.BASE_URL}/${row.cover_image}`} alt={`${row.name} Cover`} />
               //   <div className="px-6 flex items-center justify-between">
               //     <p className="font-medium">{row.name}</p>
-              //     <p className="font-medium text-gray-500 capitalize">Order Now</p>
+              //     <p className="font-medium text-neutral-500 capitalize">Order Now</p>
               //   </div>
               // </MotionLink>
               <motion.a key={row.id} target="_blank" variants={productAnimationVariants} href={`https://wa.me/6285763277736?text=Halo, Saya ingin memesan ${row.name}. Apakah tersedia?`} className="space-y-2">
                 <motion.img variants={productAnimationVariants} whileHover="hover" whileTap="tap" transition={{ type: "spring", visualDuration: .3 }} className="w-full aspect-video rounded-3xl" src={`${process.env.BASE_URL}/${row.cover_image}`} alt={`${row.name} Cover`} />
                 <div className="px-6 flex items-center justify-between">
                   <p className="font-medium">{row.name}</p>
-                  <p className="font-medium text-gray-500 capitalize">Order Now</p>
+                  <p className="font-medium text-neutral-500 capitalize">Order Now</p>
                 </div>
               </motion.a>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="flex justify-center w-full bg-white">
+        {/* Just decoration */}
+        <div className="flex items-center justify-center relative">
+          <StarSpinner className="w-20 h-20 z-2 relative text-red-500" baseVelocity={8} />
+          <span className="absolute z-1 inset-0 flex justify-center items-center"><CircleDecoration className="scale-150 text-orange-200 blur-[1px] -rotate-[9deg]" strokeWidth={2} /> </span>
+        </div>
+      </section>
+
+      <section className="flex flex-col items-center p-8 md:p-24 space-y-16 rounded-b-[4rem] border-b-12 border-b-orange-100 bg-white">
+        <h5 className="text-4xl font-semibold text-red-500">What Everyone Said</h5>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {testimonialDataList.map((row: TestimonialDataType) => (
+            <div key={row.id} className="space-y-8 px-4 py-4 bg-neutral-50 rounded-3xl">
+              <div className="flex items-center space-x-4">
+                <div className="rounded-full overflow-hidden">
+                  <img className="w-8 h-8" src={`https://ui-avatars.com/api/?rounded=true&name=${row.name}&background=ffedd5&color=ef4444&bold=true`} alt="" />
+                </div>
+                <p className="font-medium">
+                  {row.name}
+                </p>
+              </div>
+              <p className="text-neutral-500 text-justify">
+                {row.message}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
     </>

@@ -32,7 +32,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
       {isMdUp && <Cursor />}
       <main>
         <Navbar />
-        <div className="bg-gray-100">
+        <div className="bg-neutral-100">
           {children}
         </div>
         <Footer />
