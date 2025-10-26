@@ -16,6 +16,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <title>Given Frozen Food</title>
+      </head>
       {/* <body className={`${poppinsSans.className} antialiased dark:bg-gray-900 dark:text-white`}> */}
       <body className={`${poppinsSans.className} antialiased`}>
         <MainLayout>
